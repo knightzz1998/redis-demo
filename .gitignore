@@ -118,4 +118,5 @@ fabric.properties
 
 **/target
 
+**/.idea
 # End of https://www.toptal.com/developers/gitignore/api/jetbrains+all,java
