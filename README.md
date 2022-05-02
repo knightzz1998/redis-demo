@@ -1,4 +1,6 @@
 ## 项目介绍
+
+![Custom badge](https://img.shields.io/endpoint?color=red&label=db&logo=github&logoColor=green&style=plastic&url=redis)
 Redis从入门到精通
 
 ## 文章列表
