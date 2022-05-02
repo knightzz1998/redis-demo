@@ -1,6 +1,6 @@
 ## 项目介绍
 
-![Custom badge](https://img.shields.io/badge/redis-github-red)[Custom badge](https://img.shields.io/badge/github-code-red?style=plastic&logo=appveyor)
+![Custom badge](https://img.shields.io/badge/redis-github-red)![Custom badge](https://img.shields.io/badge/github-code-red?style=plastic&logo=appveyor)
 ----
 
 Redis从入门到精通
