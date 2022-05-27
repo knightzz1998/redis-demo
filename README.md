@@ -36,3 +36,12 @@
 
 ![](https://haloos.oss-cn-beijing.aliyuncs.com/typero/20220505143313.png)
 
+
+
+
+
+### 缓存一致性
+
+
+
+![img](https://haloos.oss-cn-beijing.aliyuncs.com/typero/1653617543277-44ba04e9-0df9-4f74-8162-f492bd66fde8.png)
