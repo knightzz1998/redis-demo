@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
-import static com.hmdp.utils.RedisConstants.SHOP_CACHE_PREFIX;
-
 /**
  * <p>
  * 前端控制器

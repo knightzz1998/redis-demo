@@ -35,4 +35,9 @@ public class RedisConstants {
      * 商品缓存过期时间
      */
     public static final Long CACHE_SHOP_TTL = 30L;
+
+    /**
+     * 缓存空值过期时间 => 解决缓存穿透问题
+     */
+    public static final Long CACHE_NULL_TTL = 30L;
 }

@@ -43,8 +43,8 @@ public class RefreshTokenInterceptor  implements HandlerInterceptor {
         String token = request.getHeader("authorization");
 
         if (StrUtil.isBlank(token)) {
-            response.setStatus(401);
-            return false;
+            // 这里不做拦截
+            return true;
         }
 
         String tokenKey = LOGIN_USER_KEY_PREFIX + token;
@@ -53,8 +53,7 @@ public class RefreshTokenInterceptor  implements HandlerInterceptor {
 
         // 判断查询到的用户数据是否存在
         if (userMap.isEmpty()) {
-            response.setStatus(401);
-            return false;
+            return true;
         }
 
         // 将 Map 转换为 UserDTO
