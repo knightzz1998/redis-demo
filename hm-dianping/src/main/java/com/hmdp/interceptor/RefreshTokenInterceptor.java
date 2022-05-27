@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
 import com.hmdp.dto.UserDTO;
 import com.hmdp.utils.UserHolder;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -24,6 +25,7 @@ import static com.hmdp.utils.RedisConstants.LOGIN_USER_TTL;
  * @github https://github.com/knightzz1998
  * @date 2022/5/17 20:23
  */
+@Slf4j
 public class RefreshTokenInterceptor  implements HandlerInterceptor {
 
     StringRedisTemplate stringRedisTemplate;
@@ -34,6 +36,8 @@ public class RefreshTokenInterceptor  implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
+        log.debug("进入  RefreshTokenInterceptor preHandle");
 
         // 从header中获取token
         String token = request.getHeader("authorization");

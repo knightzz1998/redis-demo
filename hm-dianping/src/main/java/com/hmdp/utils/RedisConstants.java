@@ -26,5 +26,13 @@ public class RedisConstants {
      */
     public static final Long LOGIN_USER_TTL = 30L;
 
+    /**
+     * 商品查询缓存前缀
+     */
+    public static final String CACHE_SHOP_PREFIX = "shop:cache:";
 
+    /**
+     * 商品缓存过期时间
+     */
+    public static final Long CACHE_SHOP_TTL = 30L;
 }
