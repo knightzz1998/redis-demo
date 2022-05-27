@@ -45,4 +45,9 @@ public class RedisConstants {
      * 互斥锁的key
      */
     public static final String LOCK_SHOP_PREFIX = "lock:shop:";
+
+    /**
+     * 互斥锁时间
+     */
+    public static final Long LOCK_SHOP_TTL = 10L;
 }
