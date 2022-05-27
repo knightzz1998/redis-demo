@@ -40,4 +40,9 @@ public class RedisConstants {
      * 缓存空值过期时间 => 解决缓存穿透问题
      */
     public static final Long CACHE_NULL_TTL = 30L;
+
+    /**
+     * 互斥锁的key
+     */
+    public static final String LOCK_SHOP_PREFIX = "lock:shop:";
 }
