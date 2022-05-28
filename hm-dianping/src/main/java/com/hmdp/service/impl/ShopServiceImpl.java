@@ -1,25 +1,21 @@
 package com.hmdp.service.impl;
 
-import ch.qos.logback.classic.jul.JULHelper;
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.json.JSON;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hmdp.dto.Result;
 import com.hmdp.entity.Shop;
 import com.hmdp.mapper.ShopMapper;
 import com.hmdp.service.IShopService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hmdp.utils.CacheClient;
 import com.hmdp.utils.RedisData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-
 import java.time.LocalDateTime;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -43,15 +39,23 @@ public class ShopServiceImpl extends ServiceImpl<ShopMapper, Shop> implements IS
     @Resource
     StringRedisTemplate stringRedisTemplate;
 
+    @Resource
+    private CacheClient cacheClient;
+
     @Override
     public Result queryById(Long id) {
 
+
         // 缓存穿透
+        //Shop shop = cacheClient.queryWithPassThrough(CACHE_SHOP_PREFIX, id,Shop.class,
+        //        this::getById, CACHE_SHOP_TTL, TimeUnit.MINUTES);
+
         // Shop shop = queryWithPassThrough(id);
         // 互斥锁解决缓存击穿
-        Shop shop = queryWithMutex(id);
+        // Shop shop = queryWithMutex(id);
+        Shop shop = queryWithLogicalExpire(id);
         if (shop == null) {
-            Result.fail("店铺不存在!");
+            return Result.fail("店铺不存在!");
         }
         return Result.ok(shop);
     }
@@ -146,6 +150,11 @@ public class ShopServiceImpl extends ServiceImpl<ShopMapper, Shop> implements IS
      */
     private static final ExecutorService CACHE_REBUILD_EXECUTOR = Executors.newFixedThreadPool(10);
 
+    /**
+     * 使用逻辑过期解决缓存击穿问题
+     * @param id
+     * @return
+     */
     public Shop queryWithLogicalExpire(Long id) {
 
         String redisKey = CACHE_SHOP_PREFIX + id;
@@ -215,6 +224,9 @@ public class ShopServiceImpl extends ServiceImpl<ShopMapper, Shop> implements IS
         // 在当前的时间基础上加 expireSeconds
         redisData.setExpireTime(LocalDateTime.now().plusSeconds(expireSeconds));
 
+        // 保存数据
+        String redisKey = CACHE_SHOP_PREFIX + id;
+        stringRedisTemplate.opsForValue().set(redisKey, JSONUtil.toJsonStr(redisData));
     }
 
     /**

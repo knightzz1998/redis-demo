@@ -29,7 +29,7 @@ public class RedisConstants {
     /**
      * 商品查询缓存前缀
      */
-    public static final String CACHE_SHOP_PREFIX = "shop:cache:";
+    public static final String CACHE_SHOP_PREFIX = "cache:shop:";
 
     /**
      * 商品缓存过期时间
