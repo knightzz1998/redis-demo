@@ -11,6 +11,7 @@
     <modules>
         <module>jedis-code</module>
         <module>redis-springboot</module>
+        <module>redis-cache-demo</module>
     </modules>
 
     <properties>
