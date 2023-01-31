@@ -1,8 +1,11 @@
-## 项目介绍
+## :rocket: 项目介绍
 
 ![Custom badge](https://img.shields.io/badge/redis-github-red?style=plastic&logo=appveyor) ![Custom badge](https://img.shields.io/badge/github-code-red?style=plastic&logo=appveyor)
+![Custom badge](https://img.shields.io/badge/redis-短信验证-yellow?style=plastic&logo=appveyor)
 
 ----
+
+## :pushpin: 功能实现
 
 - :white_check_mark: Redis登陆短信验证
 - 商户查询缓存
