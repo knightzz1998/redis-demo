@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="static/js/axios.min.js"></script>
+</head>
+<body>
+
+<input id="sendCapatchaInput" name="phone">
+<button onclick="sendCaptcha()">发送验证码</button>
+
+<div id="showCapatcha"></div>
+
+<br/>
+<input id="captcha" name="captcha">
+<button onclick="verifyCaptcha()">验证码</button>
+<br/>
+
+
+<script>
+
+    let phone = null
+    const showCapatcha = document.getElementById("showCapatcha")
+    function sendCaptcha() {
+        const sendCapatchaInput = document.getElementById("sendCapatchaInput")
+        phone = sendCapatchaInput.value;
+
+
+
+        console.log(phone)
+
+        axios.post('/sendCaptcha', {
+            phone: phone
+        })
+            .then(function (response) {
+                console.log(response)
+
+                const code = response.data.code
+                showCapatcha.innerHTML = "<h2> 当前验证码" + code + "</h2>"
+            })
+            .catch(error => {
+                console.log(error)
+            })
+            .then(function () {
+                alert("发送成功!")
+            })
+    }
+
+    function verifyCaptcha() {
+        const captchaElm = document.getElementById("captcha")
+        const code = captchaElm.value;
+
+        axios.post('/verifyCaptcha', {
+            phone: phone,
+            code: code
+        }).then(response => {
+            const result = response.data.result
+            showCapatcha.innerHTML = "<h2>" + result + "</h2>"
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+</script>
+</body>
+</html>

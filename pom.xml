@@ -12,6 +12,7 @@
         <module>jedis-code</module>
         <module>redis-springboot</module>
         <module>redis-cache-demo</module>
+        <module>redis-apply-captcha</module>
     </modules>
 
     <properties>
