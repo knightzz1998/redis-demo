@@ -13,6 +13,7 @@
         <module>redis-springboot</module>
         <module>redis-cache-demo</module>
         <module>redis-apply-captcha</module>
+        <module>redis-interview-apply</module>
     </modules>
 
     <properties>
