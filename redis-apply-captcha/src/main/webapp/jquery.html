@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="static/js/jquery.js"></script>
+</head>
+<body>
+
+<button id="sub">请求</button>
+
+<script>
+
+    var selectedList = []
+    selectedList.push({
+        id: 1,
+        name: "zhangfei1"
+    })
+    selectedList.push({
+        id: 2,
+        name: "zhangfei1"
+    })
+
+    var url = "hello"
+    $("#sub").click(function () {
+        $.ajax({
+            url: url,
+            data: JSON.stringify(selectedList),
+            contentType: 'application/json; charset=UTF-8',
+            type: "POST",
+            success: function (result) {
+                alert("success")
+            }
+        })
+    })
+
+</script>
+
+</body>
+</html>

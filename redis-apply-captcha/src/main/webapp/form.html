@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="static/js/jquery.js"></script>
+</head>
+<body>
+
+<button id="app">发送请求</button>
+
+<script>
+
+    selectedList = []
+    selectedList.push({
+            id: 1,
+            name: "zhangsan1"
+        },
+        {
+            id: 2,
+            name: "zhangsan2"
+        }
+    )
+    $("#app").click(function () {
+        var fm = document.createElement("form")
+        document.body.appendChild(fm)
+        fm.action = "/hello2"
+        fm.method = "POST"
+
+        var node = document.createElement("input")
+        fm.appendChild(node)
+        // 数据的name
+        node.name = "selectedList"
+        // 数据的值
+        node.value = JSON.stringify(selectedList)
+
+        fm.submit()
+        document.body.removeChild(fm)
+    })
+
+
+</script>
+
+</body>
+</html>

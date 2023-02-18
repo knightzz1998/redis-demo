@@ -1,7 +1,7 @@
 package cn.knightzz.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.alibaba.fastjson.JSONObject;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author 王天赐
@@ -12,13 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @github <a href="https://github.com/knightzz1998">https://github.com/knightzz1998</a>
  * @create: 2023-01-31 11:11
  */
-@Controller
+@RestController
 public class HelloController {
 
-    @RequestMapping("/hello")
-    public String hello() {
-        System.out.println("hello...");
-        return "hello";
-    }
+    @PostMapping("/hello")
+    public JSONObject hello(@RequestBody JSONObject selectedList) {
 
+        System.out.println("hello...");
+        JSONObject result = new JSONObject();
+        result.put("status", 404);
+        return result;
+    }
 }

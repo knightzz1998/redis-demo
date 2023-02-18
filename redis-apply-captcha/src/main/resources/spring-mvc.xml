@@ -10,6 +10,10 @@
        http://www.springframework.org/schema/context/spring-context.xsd">
     <!--配置注解扫描-->
     <context:component-scan base-package="cn.knightzz.controller"/>
+
+    <!-- 注解支持 -->
     <mvc:annotation-driven />
+
+    <!-- 静态资源处理 -->
     <mvc:default-servlet-handler/>
 </beans>
